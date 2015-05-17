@@ -12,13 +12,15 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
         etime: '@',     		//epoch time getting from a template
         format: '@',      		//format getting from a template
         step: '@',          	//step getting from a template
-        title: '@'   	      	// title of the popup
+        title: '@',   	      	// title of the popup
+		setText: '@',			// Set button text
+		closeText: '@',			// Close button text
       },
       link: function (scope, element, attrs) {
 
         element.on("click", function () {
 
-          var obj = {epochTime: scope.etime, step: scope.step, format: scope.format, title: scope.title};
+          var obj = {epochTime: scope.etime, step: scope.step, format: scope.format, title: scope.title, setText: scope.setText, closeText: scope.closeText};
 
           scope.time = {hours: 0, minutes: 0, meridian: ""};
 
@@ -103,9 +105,9 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
               subTitle: '',
               scope: scope,
               buttons: [
-                {text: 'Close'},
+                {text: obj.closeText},
                 {
-                  text: 'Set',
+                  text: obj.setText,
                   type: 'button-positive',
                   onTap: function (e) {
 
@@ -143,9 +145,9 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
               subTitle: '',
               scope: scope,
               buttons: [
-                {text: 'Close'},
+                {text: obj.closeText},
                 {
-                  text: 'Set',
+                  text: obj.setText,
                   type: 'button-positive',
                   onTap: function (e) {
 
