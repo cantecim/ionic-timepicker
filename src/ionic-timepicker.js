@@ -11,7 +11,8 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
       scope: {
         etime: '=etime',        //epoch time getting from a template
         format: '=format',      //format getting from a template
-        step: '=step'           //step getting from a template
+        step: '=step',          //step getting from a template
+        title: '=title'         // title of the popup
       },
       link: function (scope, element, attrs) {
 
@@ -98,7 +99,7 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
 
             $ionicPopup.show({
               templateUrl: 'time-picker-12-hour.html',
-              title: '<strong>12-Hour Format</strong>',
+              title: '<strong>' + scope.title + '</strong>',
               subTitle: '',
               scope: scope,
               buttons: [
@@ -138,7 +139,7 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
 
             $ionicPopup.show({
               templateUrl: 'time-picker-24-hour.html',
-              title: '<strong>24-Hour Format</strong>',
+              title: '<strong>' + scope.title + '</strong>',
               subTitle: '',
               scope: scope,
               buttons: [
