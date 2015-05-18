@@ -137,7 +137,9 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
           if (obj.format == 24) {
 
             scope.time.hours = (objDate.getUTCHours());
+			scope.time.hours = (scope.time.hours < 10) ? ('0' + scope.time.hours) : scope.time.hours;
             scope.time.minutes = (objDate.getUTCMinutes());
+			scope.time.minutes = (scope.time.minutes < 10) ? ('0' + scope.time.minutes) : scope.time.minutes;
 
             $ionicPopup.show({
               templateUrl: 'time-picker-24-hour.html',
