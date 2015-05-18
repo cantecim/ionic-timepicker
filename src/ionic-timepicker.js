@@ -9,7 +9,7 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
       restrict: 'AE',
       replace: true,
       scope: {
-        etime: '@',     		//epoch time getting from a template
+        etime: '=',     		//epoch time getting from a template
         format: '@',      		//format getting from a template
         step: '@',          	//step getting from a template
         title: '@',   	      	// title of the popup
