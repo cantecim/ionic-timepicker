@@ -9,7 +9,7 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
       restrict: 'AE',
       replace: true,
       scope: {
-        etime: '=',     		//epoch time getting from a template
+        date: '=',     		//epoch time getting from a template
         format: '=',      		//format getting from a template
         step: '=',          	//step getting from a template
         title: '@',   	      	// title of the popup
@@ -20,11 +20,11 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
 
         element.on("click", function () {
 
-          var obj = {epochTime: scope.etime, step: scope.step, format: scope.format, title: scope.title, setText: scope.setText, closeText: scope.closeText};
+          var obj = { step: scope.step, format: scope.format, title: scope.title, setText: scope.setText, closeText: scope.closeText };
 
           scope.time = {hours: 0, minutes: 0, meridian: ""};
 
-          var objDate = new Date(obj.epochTime * 1000);       // Epoch time in milliseconds.
+          var objDate = new Date(scope.date.valueOf());
 
           scope.increaseHours = function () {
             scope.time.hours = Number(scope.time.hours);
@@ -112,21 +112,9 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
                   onTap: function (e) {
 
                     scope.loadingContent = true;
-
-                    var totalSec = 0;
-
-                    if (scope.time.hours != 12) {
-                      totalSec = (scope.time.hours * 60 * 60) + (scope.time.minutes * 60);
-                    } else {
-                      totalSec = scope.time.minutes * 60;
-                    }
-
-                    if (scope.time.meridian === "AM") {
-                      totalSec += 0;
-                    } else if (scope.time.meridian === "PM") {
-                      totalSec += 43200;
-                    }
-                    scope.etime = totalSec;
+					
+					scope.date.setUTCHours(scope.time.hours);
+					scope.date.setUTCMinutes(scope.time.minutes);
                   }
                 }
               ]
@@ -155,14 +143,8 @@ angular.module('ionic-timepicker', ['ionic', 'ionic-timepicker.templates'])
 
                     scope.loadingContent = true;
 
-                    var totalSec = 0;
-
-                    if (scope.time.hours != 24) {
-                      totalSec = (scope.time.hours * 60 * 60) + (scope.time.minutes * 60);
-                    } else {
-                      totalSec = scope.time.minutes * 60;
-                    }
-                    scope.etime = totalSec;
+                    scope.date.setUTCHours(scope.time.hours);
+					scope.date.setUTCMinutes(scope.time.minutes);
                   }
                 }
               ]
